@@ -1,22 +1,22 @@
-# Reconhecimento de Gestos (Arminha e L)
+# Reconhecimento de Pose (Classe 1 = CINEMA)
 
-Projeto em página única para GitHub Pages usando Teachable Machine + Tensorflow.js.
+Projeto em página única para GitHub Pages usando Teachable Machine Pose + Tensorflow.js.
 
 ## O que este site faz
 
-- Reconhece gestos de mão em tempo real pela webcam.
-- Se detectar `arminha`, exibe imagem do Bolsonaro.
-- Se detectar `L`, exibe imagem do Lula.
+- Reconhece pose em tempo real pela webcam.
+- Usa a `Classe 1` do modelo como gatilho principal.
+- Quando a `Classe 1` passa do limiar configurado (80%), exibe o meme `CINEMA`.
+- A imagem usada no meme vem de arquivo local: `assets/cinema.jpg`.
 - Mostra barras de confiança para todas as classes do modelo.
 
-## 1) Treinar o modelo no Teachable Machine
+## 1) Treinar o modelo no Teachable Machine (Pose)
 
 1. Acesse [Teachable Machine](https://teachablemachine.withgoogle.com/).
-2. Crie um `Image Project` -> `Standard image model`.
+2. Crie um `Pose Project` -> `Standard`.
 3. Crie as classes:
-   - `arminha`
-   - `L`
-   - `neutro` (recomendado para reduzir falso positivo)
+   - `Classe 1` (sera o gatilho do meme CINEMA)
+   - outras classes que voce quiser para contraste (ex.: neutro, pose2 etc.)
 4. Colete varias amostras por classe com iluminacao e angulos diferentes.
 5. Clique em `Train Model`.
 6. Em `Export Model`:
@@ -41,14 +41,19 @@ Exemplo:
 const MODEL_URL = "https://teachablemachine.withgoogle.com/models/XXXXXXXXX/";
 ```
 
-## 3) Executar localmente
+## 3) Arquivo de imagem do meme
+
+- Garanta que o arquivo exista em `assets/cinema.jpg`.
+- O `index.html` ja esta configurado para usar esse caminho local.
+
+## 4) Executar localmente
 
 - Abra `index.html` no navegador, ou use uma extensao como Live Server.
-- Clique em `Ativar camera e iniciar reconhecimento`.
+- Clique em `Iniciar camera e reconhecimento de pose`.
 - Autorize o uso da camera.
-- Teste os gestos `arminha` e `L`.
+- Faça a pose da `Classe 1` e valide se o meme CINEMA aparece quando a confianca passa de 80%.
 
-## 4) Publicar no GitHub Pages
+## 5) Publicar no GitHub Pages
 
 No terminal, dentro da pasta do projeto:
 
